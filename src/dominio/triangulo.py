@@ -1,5 +1,5 @@
 from src.dominio import Ponto
-from src.dominio.poligono import Poligono
+from src.dominio import Poligono
 
 
 class Triangulo(Poligono):

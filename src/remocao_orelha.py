@@ -1,16 +1,15 @@
-from src.dominio import Poligono, Triangulacao
+from src.dominio import Poligono, Triangulo, Vetor
 
 
 class RemocaoOrelha:
 
     def realiza_triangulacao(self, poligono: Poligono):
-        self._determina_diagonais(poligono)
+        diagonais_candidatas = self._determina_orelha(poligono)
+        diagonais_validas = self._determina_diagonais_validas(diagonais_candidatas)
         ...
 
-    def _determina_diagonais(self, poligono: Poligono) -> list[Vetor]:
-        orelhas = []
-
-        ciclo_vertices =  poligono.gera_ciclo_vertices()
+    def _determina_orelha(self, poligono: Poligono) -> Triangulo:
+        ciclo_vertices =  [*poligono.vertices, *poligono.vertices[:2]]
         triplas_vertices = zip(ciclo_vertices, ciclo_vertices[1:], ciclo_vertices[2:])
 
         for vertice_previo, vertice, vertice_posterior in triplas_vertices:
@@ -24,5 +23,9 @@ class RemocaoOrelha:
                 continue
 
             else:
-                diagonal = vertice_posterior - vertice_previo
+                ...
+
+    @staticmethod
+    def _checa_se_diagonal_valida(diagonal: Vetor, vetores: list[Vetor]) -> bool:
+
 

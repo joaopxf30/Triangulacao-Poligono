@@ -13,7 +13,7 @@ class Vetor:
                 return self.__calcula_produto_escalar(entidade)
 
             case Vetor():
-                return self.__calcula_produto_vetorial(entidade)
+                return self.calcula_produto_vetorial(entidade)
 
             case _:
                 raise TypeError("Somente produto escalar e vetorial são implementados")
@@ -22,9 +22,6 @@ class Vetor:
         p_norma_2 = math.sqrt(self.coord_x**2 + self.coord_y**2)
 
         return p_norma_2
-
-    def detecta_cruzamento(self, vetor: "Vetor") -> bool:
-        ...
 
     def __calcula_produto_escalar(self, escalar: float) -> "Vetor":
         if escalar < 0 or escalar > 1:
@@ -35,7 +32,7 @@ class Vetor:
 
         return Vetor(coord_x, coord_y)
 
-    def __calcula_produto_vetorial(self, vetor: "Vetor") -> "Vetor":
+    def calcula_produto_vetorial(self, vetor: "Vetor") -> "Vetor":
         coord_x = self.coord_y * vetor.coord_z - self.coord_z * vetor.coord_y
         coord_y = self.coord_z * vetor.coord_x - self.coord_x * vetor.coord_y
         coord_z = self.coord_x * vetor.coord_y - self.coord_y * vetor.coord_x

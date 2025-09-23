@@ -7,13 +7,8 @@ class Poligono:
         self.vertices = vertices
         self.arestas: list[Vetor] = self._determina_arestas()
 
-    def gera_ciclo_vertices(self) -> list[Ponto]:
-        ciclo_vertices = [*self.vertices, self.vertices[0]]
-
-        return ciclo_vertices
-
     def _determina_arestas(self) -> list[Vetor]:
-        ciclo_vertices = self.gera_ciclo_vertices()
+        ciclo_vertices = [*self.vertices, self.vertices[0]]
         arestas = []
 
         for vertice_previo, vertice_posteior in pairwise(ciclo_vertices):

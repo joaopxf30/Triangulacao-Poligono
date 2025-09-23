@@ -7,21 +7,21 @@ class Ponto:
         self.coord_x = x
         self.coord_y = y
 
-    def __add__(self, outro: Vetor) -> "Ponto":
-        if not isinstance(outro, Vetor):
+    def __add__(self, vetor: Vetor) -> "Ponto":
+        if not isinstance(vetor, Vetor):
             raise TypeError("Operando deve ser da classe Vetor")
 
-        coord_x = self.coord_x + outro.coord_x
-        coord_y = self.coord_y + outro.coord_y
+        coord_x = self.coord_x + vetor.coord_x
+        coord_y = self.coord_y + vetor.coord_y
 
         return Ponto(coord_x, coord_y)
 
-    def __sub__(self, outro: "Ponto") -> Vetor:
-        if not isinstance(outro, Ponto):
+    def __sub__(self, ponto: "Ponto") -> Vetor:
+        if not isinstance(ponto, Ponto):
             raise TypeError("Operando deve ser da classe Ponto")
 
-        coord_x = self.coord_x - outro.coord_x
-        coord_y = self.coord_y - outro.coord_y
+        coord_x = self.coord_x - ponto.coord_x
+        coord_y = self.coord_y - ponto.coord_y
 
         return Vetor(coord_x, coord_y)
 
@@ -29,13 +29,18 @@ class Ponto:
         if not isinstance(outro, Ponto):
             raise TypeError("Operando deve ser da classe Ponto")
 
-        ponto = self + (outro - self) * 0.5
+        ponto_medio = self + (outro - self) * 0.5
 
-        return ponto
+        return ponto_medio
 
-    @staticmethod
-    def inicializa_com_coordenadas_polares(centro: "Ponto", theta: float, raio: float) -> "Ponto":
-        coord_x = centro.coord_x + raio * math.cos(theta)
-        coord_y = centro.coord_y + raio * math.sin(theta)
+    def calcula_determinante_tres_pontos(self, ponto_1: "Ponto", ponto_2: "Ponto") -> float:
+        if not isinstance(ponto_1, Ponto) and not isinstance(ponto_2, Ponto):
+            raise TypeError("Operando deve ser da classe Ponto")
 
-        return Ponto(coord_x, coord_y)
+        determinante = (
+            self.coord_x * ponto_1.coord_y + self.coord_y * ponto_2.coord_x +
+            ponto_1.coord_x * ponto_2.coord_y - self.coord_y * ponto_1.coord_x -
+            ponto_1.coord_y * ponto_2.coord_x - self.coord_x * ponto_2.coord_y
+        )
+
+        return determinante
