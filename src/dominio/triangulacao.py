@@ -1,0 +1,2 @@
+class Triangulacao:
+    pass
