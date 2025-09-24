@@ -24,8 +24,11 @@ class Segmento:
         if self._determina_cruzamento(orientacoes):
             return True
 
-        elif 0 in orientacoes[:2]:
-            return self._determina_tangenciamento(segmento)
+        if 0 == orientacoes[0]:
+            return self._determina_tangenciamento(segmento.vertice_inicial)
+
+        if 0 == orientacoes[1]:
+            return self._determina_tangenciamento(segmento.vertice_final)
 
         else:
             return False
@@ -39,18 +42,18 @@ class Segmento:
 
     def _determina_tangenciamento(
         self,
-        segmento: "Segmento",
+        vertice: "Ponto",
     ) -> bool:
         if abs(self.ordenamento.coord_x) > abs(self.ordenamento.coord_y):
             return (
-                min(self.vertice_inicial.coord_x, self.vertice_final.coord_x)
-                < segmento.vertice_final.coord_x <
-                max(self.vertice_inicial.coord_x, self.vertice_final.coord_x)
+                    min(self.vertice_inicial.coord_x, self.vertice_final.coord_x)
+                    < vertice.coord_x <
+                    max(self.vertice_inicial.coord_x, self.vertice_final.coord_x)
             )
 
         else:
             return (
-                min(self.vertice_inicial.coord_y, self.vertice_final.coord_y)
-                < segmento.vertice_final.coord_y <
-                max(self.vertice_inicial.coord_y, self.vertice_final.coord_y)
+                    min(self.vertice_inicial.coord_y, self.vertice_final.coord_y)
+                    < vertice.coord_y <
+                    max(self.vertice_inicial.coord_y, self.vertice_final.coord_y)
             )

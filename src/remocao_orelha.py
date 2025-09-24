@@ -1,5 +1,4 @@
 from src.dominio import Poligono, Triangulo, Ponto, Segmento
-from src.plot import plota_triangulacao
 
 
 class RemocaoOrelha:
@@ -45,7 +44,7 @@ class RemocaoOrelha:
                 vertice_final=vertice_anterior
             )
 
-            arestas_teste = arestas[:indice] + arestas[indice+3:]
+            arestas_teste = arestas[:indice] + arestas[indice+2:]
             if self._checa_se_diagonal_valida(diagonal, arestas_teste):
                 return Triangulo([vertice_anterior, vertice, vertice_posterior])
 
