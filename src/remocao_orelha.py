@@ -31,7 +31,7 @@ class RemocaoOrelha:
         ciclo_vertices =  [*poligono.vertices, *poligono.vertices[:2]]
         triplas_vertices = zip(ciclo_vertices, ciclo_vertices[1:], ciclo_vertices[2:])
 
-        for vertice_anterior, vertice, vertice_posterior in triplas_vertices:
+        for indice, (vertice_anterior, vertice, vertice_posterior) in enumerate(triplas_vertices):
             vetor_1 = vertice - vertice_anterior
             vetor_2 = vertice_posterior - vertice
 
@@ -47,11 +47,11 @@ class RemocaoOrelha:
             )
 
             arestas = poligono.arestas
-            arestas_teste = []
+            arestas_teste = arestas[:indice] + arestas[indice+2:]
             if self._checa_se_diagonal_valida(diagonal, arestas_teste):
                 return Triangulo([vertice_anterior, vertice, vertice_posterior])
 
-        assert False, "Nenhuma orelha encontrada: há algum problema na concepção do polígono"
+        assert False, "Nenhuma orelha encontrada: há algum problema no algoritmo"
 
     @staticmethod
     def _rotaciona_vertices(vertices: list[Ponto], indice: int) -> list[Ponto]:

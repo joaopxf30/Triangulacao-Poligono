@@ -1,7 +1,4 @@
-from fontTools.varLib.interpolatableHelpers import PerContourPen
-
 from src.dominio.vetor import Vetor
-import math
 
 
 class Ponto:
