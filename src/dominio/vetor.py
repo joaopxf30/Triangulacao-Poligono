@@ -18,6 +18,11 @@ class Vetor:
             case _:
                 raise TypeError("Somente produto escalar e vetorial são implementados")
 
+    def calcula_norma_euclidiana(self) -> float:
+        p_norma_2 = math.sqrt(self.coord_x**2 + self.coord_y**2)
+
+        return p_norma_2
+
     def __calcula_produto_escalar(self, escalar: float) -> "Vetor":
         if escalar < 0 or escalar > 1:
             raise ValueError("Parâmetro deve estar entre 0 e 1")

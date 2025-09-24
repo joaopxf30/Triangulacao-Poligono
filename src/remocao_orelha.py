@@ -11,8 +11,6 @@ class RemocaoOrelha:
             triangulo = self._determina_orelha(poligono)
             triangulacao.append(triangulo)
 
-            plota_triangulacao(poligono, triangulacao)
-
             vertices = poligono.vertices.copy()
             vertice_a_remover = triangulo.vertice
             index = poligono.vertices.index(vertice_a_remover)
@@ -28,6 +26,7 @@ class RemocaoOrelha:
         if len(poligono.vertices) == 3:
             return Triangulo(poligono.vertices)
 
+        arestas = poligono.arestas
         ciclo_vertices =  [*poligono.vertices, *poligono.vertices[:2]]
         triplas_vertices = zip(ciclo_vertices, ciclo_vertices[1:], ciclo_vertices[2:])
 
@@ -46,8 +45,7 @@ class RemocaoOrelha:
                 vertice_final=vertice_anterior
             )
 
-            arestas = poligono.arestas
-            arestas_teste = arestas[:indice] + arestas[indice+2:]
+            arestas_teste = arestas[:indice] + arestas[indice+3:]
             if self._checa_se_diagonal_valida(diagonal, arestas_teste):
                 return Triangulo([vertice_anterior, vertice, vertice_posterior])
 
@@ -65,7 +63,7 @@ class RemocaoOrelha:
     @staticmethod
     def _checa_se_diagonal_valida(diagonal: Segmento, arestas: list[Segmento]) -> bool:
         for aresta in arestas:
-            if diagonal.determina_intersecao(aresta):
+            if diagonal.acha_intersecao(aresta):
                 return False
 
         return True
