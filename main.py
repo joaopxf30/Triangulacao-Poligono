@@ -1,12 +1,14 @@
-from src.dominio import Ponto, Poligono
+from inputs import poligonos
+from src.plot import plota_triangulacao
+from src.remocao_orelha import RemocaoOrelha
+
+
+def triangularizacao_por_remocao_orelha():
+    algoritmo_remocao_orelha = RemocaoOrelha()
+    for poligono in poligonos:
+        triangulacao = algoritmo_remocao_orelha.realiza_triangulacao(poligono)
+        plota_triangulacao(poligono, triangulacao)
 
 
 if __name__ == "__main__":
-    coordenadas_x = [-1, 0, -1, -2, 2, 1, 2, 0, -1]
-    coordenadas_y = [-1, 0, -1, 0, -1, 0, 1, 2, 2]
-
-    pontos = [Ponto(x,y) for x, y in zip(coordenadas_x, coordenadas_y)]
-    poligono = Poligono(pontos)
-
-    print(pontos)
-
+    triangularizacao_por_remocao_orelha()

@@ -1,3 +1,5 @@
+from fontTools.varLib.interpolatableHelpers import PerContourPen
+
 from src.dominio.vetor import Vetor
 import math
 
@@ -6,6 +8,15 @@ class Ponto:
     def __init__(self, x: float, y: float):
         self.coord_x = x
         self.coord_y = y
+
+    def __key(self):
+        return self.coord_x, self.coord_y
+
+    def __eq__(self, ponto: "Ponto"):
+        if not isinstance(ponto, Ponto):
+            return False
+
+        return self.__key() == ponto.__key()
 
     def __add__(self, vetor: Vetor) -> "Ponto":
         if not isinstance(vetor, Vetor):
@@ -25,22 +36,3 @@ class Ponto:
 
         return Vetor(coord_x, coord_y)
 
-    def busca_ponto_medio(self, outro: "Ponto") -> "Ponto":
-        if not isinstance(outro, Ponto):
-            raise TypeError("Operando deve ser da classe Ponto")
-
-        ponto_medio = self + (outro - self) * 0.5
-
-        return ponto_medio
-
-    def calcula_determinante_tres_pontos(self, ponto_1: "Ponto", ponto_2: "Ponto") -> float:
-        if not isinstance(ponto_1, Ponto) and not isinstance(ponto_2, Ponto):
-            raise TypeError("Operando deve ser da classe Ponto")
-
-        determinante = (
-            self.coord_x * ponto_1.coord_y + self.coord_y * ponto_2.coord_x +
-            ponto_1.coord_x * ponto_2.coord_y - self.coord_y * ponto_1.coord_x -
-            ponto_1.coord_y * ponto_2.coord_x - self.coord_x * ponto_2.coord_y
-        )
-
-        return determinante

@@ -9,7 +9,6 @@ class Triangulo(Poligono):
 
         super().__init__(vertices)
 
-        self.vertice_previo = self.vertices[0]
+        self.vertice_anterior = self.vertices[0]
         self.vertice = self.vertices[1]
         self.vertice_posterior = self.vertices[-1]
-
