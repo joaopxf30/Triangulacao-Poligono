@@ -1,4 +1,4 @@
-from inputs import poligonos
+from input import poligonos
 from src.plot import plota_triangulacao
 from src.remocao_orelha import RemocaoOrelha
 

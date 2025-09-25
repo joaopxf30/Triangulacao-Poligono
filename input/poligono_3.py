@@ -1,7 +1,7 @@
-from inputs.gera_poligono import constroi_poligono
+from input.gera_poligono import constroi_poligono
 
 COORDENADAS_X = [-1, -1, -1, 0, 0, 1, 4, 3, 1, 0, 1, 2, 2, 0]
 COORDENADAS_Y = [1, -1, -2, -1, -3, -2, -1, 0, -1, 0, 1, 0, 2, 2]
 
 
-poligono_4 = constroi_poligono(COORDENADAS_X, COORDENADAS_Y)
+poligono_3 = constroi_poligono(COORDENADAS_X, COORDENADAS_Y)
